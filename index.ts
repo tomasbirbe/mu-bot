@@ -9,6 +9,10 @@ if (TOKEN && SERVER_URL) {
   const app = express();
 
   app.post('/', (req, res) => {
+    console.log(req);
+  });
+
+  app.get('/', (req, res) => {
     console.log('hola');
   });
 
