@@ -14,6 +14,7 @@ if (TOKEN && SERVER_URL) {
 
   app.get('/', (req, res) => {
     console.log('hola');
+    res.send('<h1>Hola!</h1>');
   });
 
   app.listen(3000, () => {
