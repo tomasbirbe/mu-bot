@@ -27,6 +27,8 @@ export async function checkLvl(name: string) {
       reset: Number($(characterDataElement.contents().get(6)).text()),
     };
 
+    console.log(characterData);
+
     if (characterData.name === name.trim().toLocaleLowerCase()) {
       character = characterData;
 
