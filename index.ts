@@ -3,10 +3,14 @@ import { config } from 'dotenv';
 
 config();
 
-const { TOKEN } = process.env;
+const { TOKEN, SERVER_URL } = process.env;
 
-if (TOKEN) {
+if (TOKEN && SERVER_URL) {
   const app = express();
+
+  app.post('/', (req, res) => {
+    console.log('hola');
+  });
 
   app.listen(3000, () => {
     console.log('App running on port 3000');
