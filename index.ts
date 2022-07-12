@@ -18,6 +18,7 @@ if (TOKEN && SERVER_URL) {
 
     const character = await checkLvl(message.text.trim().toLocaleLowerCase());
 
+    console.log(character);
     if (character) {
       const text = `A ${message.text.trim()} le faltan ${400 - character['lvl']} para resetear`;
 
