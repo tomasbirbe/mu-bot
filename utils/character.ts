@@ -10,15 +10,19 @@ interface Character {
 export async function checkLvl(name: string) {
   const url: string = 'https://mu.cafe/rankings/resets';
   const { data: rankingPage } = await axios(url);
+
+  console.log('ranking page:', rankingPage);
   const $ = load(rankingPage);
 
   const rankingTable = $('.rankings-table > tbody');
   const rankingRows = $(rankingTable).children('tr');
 
   console.log({ table: rankingTable, rows: rankingRows });
+  console.log('In checkLvl');
   let character: Character | null = null;
 
   rankingRows.each((idx, row) => {
+    console.log('In rankingRows.each');
     const characterDataElement = $(row).children('td');
     // Each td is an array like:
     // [position, img, classImg, name, activeIcon, lvl, reset, map]
