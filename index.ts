@@ -28,7 +28,9 @@ if (TOKEN && SERVER_URL) {
           chat_id: message.chat.id,
           text,
         },
-      }).then(() => res.send().status(200));
+      })
+        .then(() => res.send().status(200))
+        .catch((e) => console.log(e));
     } else {
       axios({
         method: 'POST',
@@ -37,13 +39,10 @@ if (TOKEN && SERVER_URL) {
           chat_id: message.chat.id,
           text: 'Ese personaje no se encuentra en el ranking',
         },
-      }).then(() => res.send().status(404));
+      })
+        .then(() => res.send().status(404))
+        .catch((e) => console.log(e));
     }
-  });
-
-  app.get('/', (req, res) => {
-    console.log('hola');
-    res.send('<h1>Hola!</h1>');
   });
 
   app.listen(3000, () => {
