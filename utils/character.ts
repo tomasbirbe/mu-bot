@@ -9,35 +9,40 @@ interface Character {
 
 export async function checkLvl(name: string) {
   const url: string = 'https://mu.cafe/rankings/resets';
-  const { data: rankingPage } = await axios(url);
 
-  const $ = load(rankingPage);
+  try {
+    const { data: rankingPage } = await axios(url);
 
-  const rankingTable = $('.rankings-table > tbody');
-  const rankingRows = $(rankingTable).children('tr');
+    const $ = load(rankingPage);
 
-  console.log('In checkLvl');
-  let character: Character | null = null;
+    const rankingTable = $('.rankings-table > tbody');
+    const rankingRows = $(rankingTable).children('tr');
 
-  rankingRows.each((idx, row) => {
-    console.log('In rankingRows.each');
-    const characterDataElement = $(row).children('td');
-    // Each td is an array like:
-    // [position, img, classImg, name, activeIcon, lvl, reset, map]
-    const characterData: Character = {
-      name: $(characterDataElement.contents().get(3)).text().trim().toLocaleLowerCase(),
-      lvl: Number($(characterDataElement.contents().get(5)).text()),
-      reset: Number($(characterDataElement.contents().get(6)).text()),
-    };
+    console.log('In checkLvl');
+    let character: Character | null = null;
 
-    if (characterData.name === name.trim().toLocaleLowerCase()) {
-      character = characterData;
+    rankingRows.each((idx, row) => {
+      console.log('In rankingRows.each');
+      const characterDataElement = $(row).children('td');
+      // Each td is an array like:
+      // [position, img, classImg, name, activeIcon, lvl, reset, map]
+      const characterData: Character = {
+        name: $(characterDataElement.contents().get(3)).text().trim().toLocaleLowerCase(),
+        lvl: Number($(characterDataElement.contents().get(5)).text()),
+        reset: Number($(characterDataElement.contents().get(6)).text()),
+      };
 
-      return false;
+      if (characterData.name === name.trim().toLocaleLowerCase()) {
+        character = characterData;
+
+        return false;
+      }
+    });
+
+    if (character !== null) {
+      return character;
     }
-  });
-
-  if (character !== null) {
-    return character;
+  } catch (e) {
+    console.log(e);
   }
 }
