@@ -12,11 +12,10 @@ export async function checkLvl(name: string) {
   const { data: rankingPage } = await axios(url);
   const $ = load(rankingPage);
 
-  console.log({ character: $ });
-
   const rankingTable = $('.rankings-table > tbody');
   const rankingRows = $(rankingTable).children('tr');
 
+  console.log({ table: rankingTable, rows: rankingRows });
   let character: Character | null = null;
 
   rankingRows.each((idx, row) => {
@@ -28,8 +27,6 @@ export async function checkLvl(name: string) {
       lvl: Number($(characterDataElement.contents().get(5)).text()),
       reset: Number($(characterDataElement.contents().get(6)).text()),
     };
-
-    console.log(characterData);
 
     if (characterData.name === name.trim().toLocaleLowerCase()) {
       character = characterData;
