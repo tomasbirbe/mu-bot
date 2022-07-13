@@ -19,7 +19,7 @@ export function checkLvl(name: string): Promise<Character> {
 
       let character: Character | null = null;
 
-      console.log(rankingRows);
+      console.log(rankingTable);
       rankingRows.each((idx, row) => {
         const characterDataElement = $(row).children('td');
         // Each td is an array like:
