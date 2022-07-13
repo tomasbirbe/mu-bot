@@ -22,7 +22,6 @@ export async function checkLvl(name: string) {
     let character: Character | null = null;
 
     rankingRows.each((idx, row) => {
-      console.log('In rankingRows.each');
       const characterDataElement = $(row).children('td');
       // Each td is an array like:
       // [position, img, classImg, name, activeIcon, lvl, reset, map]
@@ -31,6 +30,8 @@ export async function checkLvl(name: string) {
         lvl: Number($(characterDataElement.contents().get(5)).text()),
         reset: Number($(characterDataElement.contents().get(6)).text()),
       };
+
+      console.log(characterData.name, name.trim().toLocaleLowerCase());
 
       if (characterData.name === name.trim().toLocaleLowerCase()) {
         character = characterData;
