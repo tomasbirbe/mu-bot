@@ -41,6 +41,7 @@ export function checkLvl(name: string): Promise<Character> {
       if (character) {
         resolve(character);
       } else {
+        console.log(character);
         reject(null);
       }
     });
