@@ -8,17 +8,16 @@ interface Character {
 }
 
 export async function checkLvl(name: string) {
-  const url: string = 'https://mu.cafe/rankings/resets';
+  const { SERVER_URL } = process.env;
 
   try {
-    const { data: rankingPage } = await axios(url);
+    const { data: rankingPage } = await axios(SERVER_URL || 'https://mu.cafe/rankings/resets');
 
     const $ = load(rankingPage);
 
     const rankingTable = $('.rankings-table > tbody');
     const rankingRows = $(rankingTable).children('tr');
 
-    console.log('In checkLvl');
     let character: Character | null = null;
 
     rankingRows.each((idx, row) => {
