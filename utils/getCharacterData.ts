@@ -22,7 +22,7 @@ export function getCharacterData(characterName: string): Promise<Character> {
         const characterNameFromPage = $('.cname ').text();
         const test = pretty($('.cname').html() || '<p>Null</p>').contents;
 
-        console.log(test);
+        console.log(pretty($.html() || '<p>null</p>').contents);
 
         console.log('Cheerio load the page');
         if (characterNameFromPage.trim().toLocaleLowerCase() === characterNameNormalized) {
