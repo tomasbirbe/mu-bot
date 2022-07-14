@@ -21,7 +21,7 @@ export function getCharacterData(characterName: string): Promise<Character> {
         const $ = load(characterPage);
         const characterNameFromPage = $('.cname ').text();
 
-        console.log('personaje', characterNameFromPage);
+        console.log(characterNameFromPage);
         console.log('Cheerio load the page', characterNameFromPage);
         if (characterNameFromPage.trim().toLocaleLowerCase() === characterNameNormalized) {
           const characterDataRows = $(
