@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { load } from 'cheerio';
+import * as cheerio from 'cheerio';
 import pretty from '@starptech/prettyhtml';
 
 interface Character {
@@ -18,7 +18,7 @@ export function getCharacterData(characterName: string): Promise<Character> {
       .get(`https://mu.cafe/profile/player/req/${characterNameNormalized}`)
       .then(({ data: characterPage }) => {
         console.log('axios get the page');
-        const $ = load(characterPage);
+        const $ = cheerio.load(characterPage);
         const characterNameFromPage = $('.cname ').text();
 
         console.log(characterNameFromPage);
