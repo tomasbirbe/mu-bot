@@ -47,4 +47,6 @@ if (TOKEN) {
   app.listen(PORT || 3000, () => {
     console.log(`App running on port ${PORT}`);
   });
+} else {
+  console.log('Check de env variables');
 }
