@@ -20,9 +20,11 @@ export function getCharacterData(characterName: string): Promise<Character> {
         console.log('axios get the page');
         const $ = cheerio.load(characterPage);
         const characterNameFromPage = $('.cname ').text();
+        const test = pretty($('.cname').html() || '<p>Null</p>').contents;
 
-        console.log(characterNameFromPage);
-        console.log('Cheerio load the page', characterNameFromPage);
+        console.log(test);
+
+        console.log('Cheerio load the page');
         if (characterNameFromPage.trim().toLocaleLowerCase() === characterNameNormalized) {
           const characterDataRows = $(
             '.profiles_player_table.profiles_player_table_info > tbody > tr',
