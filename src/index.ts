@@ -13,7 +13,7 @@ interface Character {
 }
 const { TOKEN, SERVER_URL, PORT } = process.env;
 
-if (TOKEN && SERVER_URL) {
+if (TOKEN) {
   const app = express();
 
   app.use(json());
