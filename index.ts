@@ -11,7 +11,7 @@ interface Character {
   lvl: number;
   reset: number;
 }
-const { TOKEN, SERVER_URL } = process.env;
+const { TOKEN, SERVER_URL, PORT } = process.env;
 
 if (TOKEN && SERVER_URL) {
   const app = express();
@@ -96,7 +96,7 @@ if (TOKEN && SERVER_URL) {
   //   }
   // });
 
-  app.listen(3000, () => {
+  app.listen(PORT || 3000, () => {
     console.log('App running on port 3000');
   });
 }
