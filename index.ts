@@ -13,7 +13,9 @@ interface Character {
 }
 const { TOKEN, SERVER_URL, PORT } = process.env;
 
-if (TOKEN && SERVER_URL) {
+// console.log('')
+
+if (TOKEN) {
   const app = express();
 
   app.use(json());
@@ -47,4 +49,6 @@ if (TOKEN && SERVER_URL) {
   app.listen(PORT || 3000, () => {
     console.log(`App running on port ${PORT}`);
   });
+} else {
+  console.log('Check env variables');
 }
