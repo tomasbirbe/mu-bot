@@ -2,7 +2,7 @@ import express, { json } from 'express';
 import { config } from 'dotenv';
 import axios from 'axios';
 
-import { getCharacterData } from './utils/getCharacterData';
+import { getCharacterData } from '../utils/getCharacterData';
 
 config();
 
