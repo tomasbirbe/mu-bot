@@ -11,9 +11,9 @@ interface Character {
   lvl: number;
   reset: number;
 }
-const { TOKEN, SERVER_URL } = process.env;
+const { TOKEN, SERVER_URL, PORT } = process.env;
 
-if (TOKEN && SERVER_URL) {
+if (TOKEN) {
   const app = express();
 
   app.use(json());
@@ -44,59 +44,9 @@ if (TOKEN && SERVER_URL) {
       });
   });
 
-  // app.post('/', (req, res) => {
-  // const { message } = req.body;
-  // checkLvl(message.text.trim().toLocaleLowerCase());
-  // .then((character: Character) => {
-  //   const text = `A ${message.text.trim()} le faltan ${400 - character['lvl']} para resetear`;
-  //   axios({
-  //     method: 'POST',
-  //     url: `https://api.telegram.org/bot${TOKEN}/sendMessage`,
-  //     data: {
-  //       chat_id: message.chat.id,
-  //       text,
-  //     },
-  //   })
-  //     .then(() => res.send().status(200))
-  //     .catch((e) => console.log(e));
-  // })
-  // .catch((e: any) =>
-  //   axios({
-  //     method: 'POST',
-  //     url: `https://api.telegram.org/bot${TOKEN}/sendMessage`,
-  //     data: {
-  //       chat_id: message.chat.id,
-  //       text: 'Ese personaje no se encuentra en el ranking',
-  //     },
-  //   }).then(() => res.send().status(404)),
-  // );
-  //   if (character) {
-  //     const text = `A ${message.text.trim()} le faltan ${400 - character['lvl']} para resetear`;
-  //     axios({
-  //       method: 'POST',
-  //       url: `https://api.telegram.org/bot${TOKEN}/sendMessage`,
-  //       data: {
-  //         chat_id: message.chat.id,
-  //         text,
-  //       },
-  //     })
-  //       .then(() => res.send().status(200))
-  //       .catch((e) => console.log(e));
-  //   } else {
-  //     axios({
-  //       method: 'POST',
-  //       url: `https://api.telegram.org/bot${TOKEN}/sendMessage`,
-  //       data: {
-  //         chat_id: message.chat.id,
-  //         text: 'Ese personaje no se encuentra en el ranking',
-  //       },
-  //     })
-  //       .then(() => res.send().status(404))
-  //       .catch((e) => console.log(e));
-  //   }
-  // });
-
-  app.listen(3000, () => {
-    console.log('App running on port 3000');
+  app.listen(PORT || 3000, () => {
+    console.log(`App running on port ${PORT}`);
   });
+} else {
+  console.log('Check env variables');
 }
